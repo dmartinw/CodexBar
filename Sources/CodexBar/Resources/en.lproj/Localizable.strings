@@ -2634,3 +2634,8 @@
 "API credit" = "API credit";
 "Purchased credit" = "Purchased credit";
 "Claude Platform exposes Console credit balance and monthly spend, not local token cost history." = "Claude Platform exposes Console credit balance and monthly spend, not local token cost history.";
+
+
+/* Munito provider credentials */
+"Key with Read account data (Admin API) permission. Or set MUNITO_API_KEY." = "Key with Read account data (Admin API) permission. Or set MUNITO_API_KEY.";
+"Munito reports Admin API spend and limits, not local token cost history." = "Munito reports Admin API spend and limits, not local token cost history.";

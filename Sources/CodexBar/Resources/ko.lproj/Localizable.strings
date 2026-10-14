@@ -2597,3 +2597,8 @@
 "API credit" = "API 크레딧";
 "Purchased credit" = "구매한 크레딧";
 "Claude Platform exposes Console credit balance and monthly spend, not local token cost history." = "Claude Platform은 로컬 토큰 비용 내역이 아닌 Console 크레딧 잔액과 월간 지출을 표시합니다.";
+
+
+/* Munito provider credentials */
+"Key with Read account data (Admin API) permission. Or set MUNITO_API_KEY." = "계정 데이터 읽기(Admin API) 권한이 있는 키입니다. 또는 MUNITO_API_KEY를 설정하세요.";
+"Munito reports Admin API spend and limits, not local token cost history." = "Munito는 Admin API 지출 및 한도를 보고하며, 로컬 토큰 비용 기록은 아닙니다.";

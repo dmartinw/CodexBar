@@ -2629,3 +2629,8 @@
 "API credit" = "Кредит API";
 "Purchased credit" = "Придбаний кредит";
 "Claude Platform exposes Console credit balance and monthly spend, not local token cost history." = "Claude Platform показує баланс кредитів і щомісячні витрати в Console, а не локальну історію витрат на токени.";
+
+
+/* Munito provider credentials */
+"Key with Read account data (Admin API) permission. Or set MUNITO_API_KEY." = "Ключ із правом читання даних облікового запису (Admin API). Або встановіть MUNITO_API_KEY.";
+"Munito reports Admin API spend and limits, not local token cost history." = "Munito звітує про витрати та ліміти Admin API, а не локальну історію витрат на токени.";

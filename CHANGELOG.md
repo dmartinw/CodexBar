@@ -8,6 +8,7 @@
 - About: show bundled open-source acknowledgements and bundle SwiftPM and vendored dependency notices with the app, widget, CLI, and Linux desktop (#4483). Thanks @elijahfriedman!
 
 - Menu bar: add optional Large text and monospaced digits to custom layouts, preserving existing sizes and older-build layout compatibility (#4455). Thanks @deinspanjer!
+- Providers: add Munito today and this month's spend against the organization's spend limits through a bundled plugin, using an admin API key with Read account data permission (#4531). Thanks @dmartinw!
 
 ### Changed
 
