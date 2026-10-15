@@ -123,11 +123,10 @@ defineProvider({
       if (account != null) {
         rows.push({ label: `${label} account limit`, value: ctx.format.usd(account) });
       }
+      if (entry.stoppedUntil) rows.push({ label: `${label} stopped until`, value: entry.stoppedUntil.toISOString() });
     };
     if (day) moneyRow("Today", day);
     if (month) moneyRow("This month", month);
-    const stopped = day?.stoppedUntil ?? month?.stoppedUntil;
-    if (stopped) rows.push({ label: "Spend stopped until", value: stopped.toISOString().slice(0, 10) });
     if (usageTier) rows.push({ label: "Usage tier", value: usageTier });
     const details: Array<{
       title: string;

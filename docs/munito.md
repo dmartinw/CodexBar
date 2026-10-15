@@ -17,8 +17,8 @@ over the environment. CodexBar sends the key only to `https://api.munito.ai` as 
 import browser cookies or start a login flow.
 
 Create the key in [console.munito.ai/keys](https://console.munito.ai/keys) with the **Read account data (Admin API)**
-permission. Only owners and admins can create such a key, and it cannot spend: an inference-only key returns HTTP 403,
-which CodexBar reports as a permission problem rather than an expired key.
+permission. Only owners and admins can create such a key. CodexBar makes read-only GET requests; an inference-only
+key returns HTTP 403, which CodexBar reports as a permission problem rather than an expired key.
 
 The bundled JavaScript plugin reads `GET /admin/v1/limits` and shows:
 
@@ -26,7 +26,8 @@ The bundled JavaScript plugin reads `GET /admin/v1/limits` and shows:
   applicable limit are listed as rows.
 - **This month**: the month period's `spent_usd` against `limit_usd`, also shown as the cost meter with period
   "This month". When Munito reports only a day period, the meter keeps the day's spend as "Today".
-- **Spend stopped until**: the period's `stopped_until` date when Munito has halted spending after a limit was hit.
+- **Today stopped until / This month stopped until**: each period's full `stopped_until` timestamp when Munito has
+  halted spending after a limit was hit. Both restrictions remain visible when their end times differ.
 - **Usage tier**, plus the organization name, status, and data region from the best-effort `GET /admin/v1/organization`
   read. A failing organization read never discards the spend limits.
 

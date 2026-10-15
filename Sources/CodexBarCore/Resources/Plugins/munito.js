@@ -5,27 +5,6 @@ function _nullishCoalesce(lhs, rhsFn) {
     return rhsFn();
   }
 }
-function _optionalChain(ops) {
-  let lastAccessLHS = undefined;
-  let value = ops[0];
-  let i = 1;
-  while (i < ops.length) {
-    const op = ops[i];
-    const fn = ops[i + 1];
-    i += 2;
-    if ((op === "optionalAccess" || op === "optionalCall") && value == null) {
-      return undefined;
-    }
-    if (op === "access" || op === "optionalAccess") {
-      lastAccessLHS = value;
-      value = fn(value);
-    } else if (op === "call" || op === "optionalCall") {
-      value = fn((...args) => value.call(lastAccessLHS, ...args));
-      lastAccessLHS = undefined;
-    }
-  }
-  return value;
-}
 defineProvider({
   id: "munito",
   name: "Munito",
@@ -143,13 +122,10 @@ defineProvider({
       if (account != null) {
         rows.push({ label: `${label} account limit`, value: ctx.format.usd(account) });
       }
+      if (entry.stoppedUntil) rows.push({ label: `${label} stopped until`, value: entry.stoppedUntil.toISOString() });
     };
     if (day) moneyRow("Today", day);
     if (month) moneyRow("This month", month);
-    const stopped = _nullishCoalesce(_optionalChain([day, "optionalAccess", (_) => _.stoppedUntil]), () =>
-      _optionalChain([month, "optionalAccess", (_2) => _2.stoppedUntil]),
-    );
-    if (stopped) rows.push({ label: "Spend stopped until", value: stopped.toISOString().slice(0, 10) });
     if (usageTier) rows.push({ label: "Usage tier", value: usageTier });
     const details = [];
     if (rows.length) details.push({ title: "Spend limits", rows });

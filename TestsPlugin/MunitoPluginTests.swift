@@ -98,9 +98,22 @@ struct MunitoPluginTests {
         #expect(snapshot.primary?.usedPercent == 100)
         #expect(snapshot.providerCost?.period == "Today")
         let labels = snapshot.details.flatMap { $0.rows.map(\.label) }
-        #expect(labels.contains("Spend stopped until"))
-        let row = try #require(snapshot.details.flatMap(\.rows).first { $0.label == "Spend stopped until" })
-        #expect(row.value == "2030-01-01")
+        #expect(labels.contains("Today stopped until"))
+        let row = try #require(snapshot.details.flatMap(\.rows).first { $0.label == "Today stopped until" })
+        #expect(row.value == "2030-01-01T00:00:00.000Z")
+    }
+
+    @Test(arguments: BundledPluginTestSupport.engines)
+    func `daily and monthly spending stops retain their separate times`(engine: ProviderPluginEngineKind) async throws {
+        let body = #"""
+        {"periods":[
+          {"period":"day","spent_usd":50,"limit_usd":50,"stopped_until":"2030-01-02T08:30:00Z"},
+          {"period":"month","spent_usd":500,"limit_usd":500,"stopped_until":"2030-02-01T00:00:00Z"}]}
+        """#
+        let snapshot = try await Self.fetch(body, engine: engine)
+        let stops = snapshot.details.flatMap(\.rows).filter { $0.label.hasSuffix("stopped until") }
+        #expect(stops.map(\.label) == ["Today stopped until", "This month stopped until"])
+        #expect(stops.map(\.value) == ["2030-01-02T08:30:00.000Z", "2030-02-01T00:00:00.000Z"])
     }
 
     @Test(arguments: BundledPluginTestSupport.engines)
