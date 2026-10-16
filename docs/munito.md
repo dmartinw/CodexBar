@@ -35,6 +35,9 @@ Numeric-string amounts are accepted; missing or zero limits keep the spend rows 
 empty `periods` array still shows the account card. Missing, negative, or nonfinite amounts fail parsing instead of
 becoming zero. The API does not report a reset time, so CodexBar shows the daily window without a guessed countdown.
 
+When the reported period has a positive limit, its budget is also available to menu bar **Spend** layout items and
+conditions through the **Extra usage** metric.
+
 ```sh
 codexbar usage --provider munito --source api --json
 ```

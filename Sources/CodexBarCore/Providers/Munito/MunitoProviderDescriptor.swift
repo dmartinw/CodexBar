@@ -15,6 +15,7 @@ public enum MunitoProviderDescriptor {
         environmentKey: "MUNITO_API_KEY",
         environmentAliases: ["MUNITO_ADMIN_KEY"],
         missingCredentialMessage: { _ in "Set a Munito admin API key in Settings or MUNITO_API_KEY." },
+        menuBarMetrics: .init(supported: [.automatic, .primary, .secondary, .extraUsage]),
         apiKeyField: .init(
             id: "munito-api-key",
             title: "Admin API key",
